@@ -1,4 +1,4 @@
-
+package org.cc.test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
