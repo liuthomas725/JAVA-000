@@ -10,3 +10,14 @@ spring:
        username: root
        password: 14/2
        driver-class-name: com.mysql.cj.jdbc.Driver
+datasources:
+  master:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds0?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 14/2
+  slave0:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds1?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 14/2
