@@ -18,13 +18,15 @@ import java.sql.SQLException;
 public class DataSourceTest {
     @Resource
     private DataSource dataSource;
+    @Resource
+    private XAService xaService;
 
     @Test
-    public void query(){
+    public void query() {
         try {
-            Connection  con = dataSource.getConnection();
+            Connection con = dataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM t_store_order WHERE store_order_id = ?");
-            preparedStatement.setLong(1,1);
+            preparedStatement.setLong(1, 1);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,12 +34,12 @@ public class DataSourceTest {
     }
 
     @Test
-    public void update(){
+    public void update() {
         try {
-            Connection  con = dataSource.getConnection();
+            Connection con = dataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE t_store_order SET order_num = ? WHERE store_order_id = ?");
-            preparedStatement.setInt(1,3);
-            preparedStatement.setLong(2,1);
+            preparedStatement.setInt(1, 3);
+            preparedStatement.setLong(2, 1);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,11 +47,11 @@ public class DataSourceTest {
     }
 
     @Test
-    public void delete(){
+    public void delete() {
         try {
-            Connection  con = dataSource.getConnection();
+            Connection con = dataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM t_store_order  WHERE store_order_id = ?");
-            preparedStatement.setLong(1,1);
+            preparedStatement.setLong(1, 1);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,15 +59,20 @@ public class DataSourceTest {
     }
 
     @Test
-    public void insert(){
+    public void insert() {
         TransactionTypeHolder.set(TransactionType.XA);
         try {
-            Connection  con = dataSource.getConnection();
+            Connection con = dataSource.getConnection();
             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO t_store_order(store_order_id) VALUES(?)");
-            preparedStatement.setLong(1,2);
+            preparedStatement.setLong(1, 2);
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void insertAnddelete() throws Exception {
+        xaService.insertAnddelete();
     }
 }
