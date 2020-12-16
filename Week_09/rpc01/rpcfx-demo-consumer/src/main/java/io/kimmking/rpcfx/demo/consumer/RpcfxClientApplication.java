@@ -6,7 +6,11 @@ import io.kimmking.rpcfx.demo.api.OrderService;
 import io.kimmking.rpcfx.demo.api.User;
 import io.kimmking.rpcfx.demo.api.UserService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import java.lang.reflect.Proxy;
+
+@EnableAspectJAutoProxy
 @SpringBootApplication
 public class RpcfxClientApplication {
 
@@ -20,7 +24,7 @@ public class RpcfxClientApplication {
 		// UserService service = new xxx();
 		// service.findById
 
-		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
+		UserService userService =  Rpcfx.create(UserService.class, "http://localhost:8080/");
 		User user = userService.findById(1);
 		System.out.println("find user id=1 from server: " + user.getName());
 
