@@ -1,0 +1,13 @@
+package org.cc;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@EnableAutoConfiguration
+public class ForeignClientApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ForeignClientApplication.class,args);
+    }
+}
