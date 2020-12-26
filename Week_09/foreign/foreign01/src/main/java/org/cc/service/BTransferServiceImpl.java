@@ -19,8 +19,8 @@ public class BTransferServiceImpl implements BTransferService {
         //系统账户
         Account totalAccount = jdbcTemplate.queryForObject("SELECT * FROM t_account WHERE userid = ? AND currency = ?", Account.class, 0, 2);
         //用户账户
-        Account account = jdbcTemplate.queryForObject("SELECT * FROM t_account WHERE userid = ? AND currency = ?", Account.class, 1, 1);
-        Account  dollarAccount = jdbcTemplate.queryForObject("SELECT * FROM t_account WHERE userid = ? AND currency = ?", Account.class, 1, 2);
+        Account account = jdbcTemplate.queryForObject("SELECT * FROM t_account WHERE userid = ? AND currency = ?", Account.class, 2, 1);
+        Account  dollarAccount = jdbcTemplate.queryForObject("SELECT * FROM t_account WHERE userid = ? AND currency = ?", Account.class, 2, 2);
         //冻结1美元
         jdbcTemplate.update("UPDATE t_account SET balance = balance - ? WHERE account_id = ?", 1, totalAccount.getAccountId());
         //冻结状态:1.冻结;2.解冻
