@@ -10,7 +10,7 @@ public class Account implements Serializable {
 
     private Long accountId;
 
-    private Integer accountType;
+    private Integer currency;
 
     private Long balance;
 

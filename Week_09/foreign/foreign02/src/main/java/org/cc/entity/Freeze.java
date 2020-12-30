@@ -12,6 +12,9 @@ public class Freeze implements Serializable {
 
     private Long freezeAmount;
 
+    private Integer currency;
+
+
     private Integer freezeStatus;
 
     private Long accountId;
